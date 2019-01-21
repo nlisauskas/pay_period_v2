@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  savings_target: 1.5
+  age: 1
+  name: MyString
+  goal_retirement_age: 1
+  net_worth: 1.5
+
+two:
+  savings_target: 1.5
+  age: 1
+  name: MyString
+  goal_retirement_age: 1
+  net_worth: 1.5

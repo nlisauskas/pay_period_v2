@@ -1,6 +1,11 @@
-import { combineReducers } from 'redux'
-import manageIncome from './manageIncome';
-import manageStatus from './manageStatus';
-import manageExpense from './manageExpense';
+import { combineReducers } from 'redux';
+import incomesReducer from './incomes';
+import expensesReducer from './expenses';
+import usersReducer from './user';
 
-export default combineReducers({income: manageIncome, status: manageStatus, expense: manageExpense})
+
+export default combineReducers({
+    incomes: incomesReducer,
+    expenses: expensesReducer,
+    user: usersReducer
+});

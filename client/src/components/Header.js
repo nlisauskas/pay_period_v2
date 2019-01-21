@@ -7,7 +7,8 @@ const Header = () => {
       <div className="App-header">
         <h1>Welcome to your Pay Period Dashboard - your compass to financial freedom</h1>
         <h3><Link to='/' style={{ textDecoration: 'none', color: 'black'}}>View Dashboard</Link></h3>
-        <h3><Link to='/income' style={{ textDecoration: 'none', color: 'black'}}>View Income</Link></h3>
+        <h3><Link to='/user' style={{ textDecoration: 'none', color: 'black'}}>View User</Link></h3>
+        <h3><Link to='/incomes' style={{ textDecoration: 'none', color: 'black'}}>View Income</Link></h3>
         <h3><Link to='/expenses' style={{ textDecoration: 'none', color: 'black'}}>View Expenses</Link></h3>
       </div>
     </div>

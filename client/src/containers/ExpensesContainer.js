@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { getExpenses, addExpense, deleteExpense } from '../actions/index'
 import Expense from '../components/Expense';
 import ExpenseForm from './ExpenseForm';
-import EditExpenseForm from '../components/EditExpenseForm';
 
 class ExpensesContainer extends Component {
 
@@ -24,6 +23,7 @@ class ExpensesContainer extends Component {
       } else {
         return(
           <div>
+            <h2>Expenses</h2>
             {this.renderExpenses()}
             <ExpenseForm />
           </div>

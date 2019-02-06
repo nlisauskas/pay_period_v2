@@ -1,7 +1,7 @@
-export function getIncomes() {
+export function getIncomes(user_id) {
   return (dispatch) => {
     dispatch({ type: 'LOADING_INCOMES' });
-    return fetch('http://localhost:3001/api/v1/incomes')
+    return fetch(`http://localhost:3001/api/v1/users/${user_id}/incomes`)
       .then(response => response.json())
       .then(incomes => dispatch({ type: 'GET_INCOMES', payload: incomes }));
   };
@@ -37,10 +37,10 @@ export function deleteIncome(id) {
   }
 }
 
-export function getExpenses() {
+export function getExpenses(user_id) {
   return (dispatch) => {
     dispatch({ type: 'LOADING_EXPENSES' });
-    return fetch('http://localhost:3001/api/v1/expenses')
+    return fetch(`http://localhost:3001/api/v1/users/${user_id}/expenses`)
       .then(response => response.json())
       .then(expenses => dispatch({ type: 'GET_EXPENSES', payload: expenses }));
   };
@@ -85,20 +85,20 @@ export function getUser() {
   };
 }
 
-export function getTotalIncome(id) {
+export function getTotalIncome(user_id) {
   return (dispatch) => {
     dispatch({ type: 'LOADING_USER_INCOME' });
-    return fetch('http://localhost:3001/api/v1/users/1/incomes')
+    return fetch(`http://localhost:3001/api/v1/users/${user_id}/incomes`)
       .then(response => response.json())
-      .then(user => dispatch({ type: 'GET_USER', payload: user }));
+      .then(totalIncome => dispatch({ type: 'UPDATE_USER_INCOME', payload: totalIncome }));
   };
 }
 
-export function getTotalExpense(id) {
+export function getTotalExpense(user_id) {
   return (dispatch) => {
     dispatch({ type: 'LOADING_USER_EXPENSE' });
-    return fetch('http://localhost:3001/api/v1/users/1/expenses')
+    return fetch(`http://localhost:3001/api/v1/users/${user_id}/expenses`)
       .then(response => response.json())
-      .then(user => dispatch({ type: 'GET_USER', payload: user }));
+      .then(totalExpense => dispatch({ type: 'UPDATE_USER_EXPENSE', payload: totalExpense }));
   };
 }

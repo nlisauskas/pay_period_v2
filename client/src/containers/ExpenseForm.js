@@ -34,6 +34,7 @@ class ExpenseForm extends Component {
     const { name, value } = e.target;
     this.setState({
       [name]: value,
+      user_id: 1
     })
   }
 
@@ -42,7 +43,7 @@ class ExpenseForm extends Component {
       <div className="expense-container">
       <h1 className='center'> Add a new expense! </h1>
           <Form horizontal onSubmit={this.handleSubmit}>
-      <FormGroup controlId="formHorizontalName">
+      <FormGroup controlId="formHorizontalDescription">
         <Col componentClass={ControlLabel} sm={2}>
           Description
         </Col>
@@ -51,7 +52,7 @@ class ExpenseForm extends Component {
         </Col>
       </FormGroup>
 
-      <FormGroup controlId="formHorizontalLocation">
+      <FormGroup controlId="formHorizontalAmount">
         <Col componentClass={ControlLabel} sm={2}>
           Amount
         </Col>
@@ -60,21 +61,12 @@ class ExpenseForm extends Component {
         </Col>
       </FormGroup>
 
-      <FormGroup controlId="formHorizontalAbout">
+      <FormGroup controlId="formHorizontalCategory">
         <Col componentClass={ControlLabel} sm={2}>
           Category
         </Col>
         <Col sm={10}>
           <FormControl type="text" placeholder="Category" name="category" onChange={this.handleChange}/>
-        </Col>
-      </FormGroup>
-
-      <FormGroup controlId="formHorizontalWebsite">
-        <Col componentClass={ControlLabel} sm={2}>
-          User_Id
-        </Col>
-        <Col sm={10}>
-          <FormControl type="integer" placeholder="User_id" name="user_id" onChange={this.handleChange}/>
         </Col>
       </FormGroup>
 

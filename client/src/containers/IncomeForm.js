@@ -21,6 +21,7 @@ class IncomeForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault()
+
     this.props.addIncome(this.state)
     this.setState({
       description: '',
@@ -34,6 +35,7 @@ class IncomeForm extends Component {
     const { name, value } = e.target;
     this.setState({
       [name]: value,
+      user_id: 1
     })
   }
 
@@ -42,7 +44,7 @@ class IncomeForm extends Component {
       <div className="income-container">
       <h1 className='center'> Add a new income! </h1>
           <Form horizontal onSubmit={this.handleSubmit}>
-      <FormGroup controlId="formHorizontalName">
+      <FormGroup controlId="formHorizontalDescription">
         <Col componentClass={ControlLabel} sm={2}>
           Description
         </Col>
@@ -51,7 +53,7 @@ class IncomeForm extends Component {
         </Col>
       </FormGroup>
 
-      <FormGroup controlId="formHorizontalLocation">
+      <FormGroup controlId="formHorizontalAmount">
         <Col componentClass={ControlLabel} sm={2}>
           Amount
         </Col>
@@ -60,7 +62,7 @@ class IncomeForm extends Component {
         </Col>
       </FormGroup>
 
-      <FormGroup controlId="formHorizontalAbout">
+      <FormGroup controlId="formHorizontalCategory">
         <Col componentClass={ControlLabel} sm={2}>
           Category
         </Col>
@@ -69,14 +71,6 @@ class IncomeForm extends Component {
         </Col>
       </FormGroup>
 
-      <FormGroup controlId="formHorizontalWebsite">
-        <Col componentClass={ControlLabel} sm={2}>
-          User_Id
-        </Col>
-        <Col sm={10}>
-          <FormControl type="integer" placeholder="User_id" name="user_id" onChange={this.handleChange}/>
-        </Col>
-      </FormGroup>
 
       <FormGroup>
         <Col smOffset={2} sm={10}>

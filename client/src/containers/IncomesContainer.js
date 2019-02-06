@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { getIncomes, addIncome, deleteIncome } from '../actions/index'
 import Income from '../components/Income';
 import IncomeForm from './IncomeForm';
-import EditIncomeForm from '../components/EditIncomeForm';
 
 class IncomesContainer extends Component {
 
@@ -24,6 +23,7 @@ class IncomesContainer extends Component {
       } else {
         return(
           <div>
+            <h2>Sources of Income</h2>
             {this.renderIncomes()}
             <IncomeForm />
           </div>

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getIncomes, addIncome, deleteIncome } from '../actions/index'
+import { getIncomes, addIncome, deleteIncome, editIncome, updateIncome } from '../actions/index'
 import Income from '../components/Income';
+import EditIncome from '../components/EditIncome';
 import IncomeForm from './IncomeForm';
 
 class IncomesContainer extends Component {
@@ -10,7 +11,13 @@ class IncomesContainer extends Component {
       this.props.getIncomes();
     }
 
-    renderIncomes = () => this.props.incomes.incomeInfo.map((income, id) => <Income key={income.id} id={income.id} description={income.description} amount={income.amount} deleteIncome={this.props.deleteIncome} />)
+    renderIncomes = () => this.props.incomes.incomeInfo.map((income, id) =>
+        (
+          <div key={income.id}>
+                {income.isEditing ? <EditIncome key={income.id} income={income} /> :
+                <Income key={income.id} id={income.id} description={income.description} amount={income.amount} deleteIncome={this.props.deleteIncome} editIncome={this.props.editIncome} />}
+          </div>
+        ));
 
     render() {
       console.log(this.props.incomes.incomeInfo)
@@ -19,7 +26,7 @@ class IncomesContainer extends Component {
           <div>
             <p>Still loading...</p>
           </div>
-        );
+        )
       } else {
         return(
           <div>
@@ -39,7 +46,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return { getIncomes: () => dispatch(getIncomes()),
            addIncome: formData => dispatch(addIncome(formData)),
-           deleteIncome: id => dispatch(deleteIncome(id))
+           deleteIncome: id => dispatch(deleteIncome(id)),
+           editIncome: id => dispatch(editIncome(id))
          }
        };
 

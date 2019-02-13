@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getUser, getTotalIncome, getTotalExpense } from '../actions/index'
+import { getUser, getTotalIncome, getTotalExpense, editUser } from '../actions/index'
 import User from '../components/User';
+import EditUser from '../components/EditUser';
 import UserProfile from '../components/UserProfile';
 
 class UserContainer extends Component {
@@ -41,7 +42,11 @@ class UserContainer extends Component {
 
       return(
         <div>
-      <User name={this.props.user.name} payDate={payDate()} totalIncome={this.props.totalIncome} totalExpense={this.props.totalExpense} daysRemaining={daysRemaining} remainingBudget={this.props.totalIncome - this.props.totalExpense - this.props.user.savings_target} currentSavings={this.props.user.net_worth} savingsTarget={this.props.user.savings_target} onTrack="are"/>
+        <div key={this.props.user.id}>
+              {this.props.user.isEditing ? <EditUser key={this.props.user.id} user={this.props.user} /> :
+              <UserProfile key={this.props.user.id} id={this.props.user.id} name={this.props.user.name} savings_target={this.props.user.savings_target} pay_frequency={this.props.user.pay_frequency} goal_retirement_age={this.props.user.goal_retirement_age} net_worth={this.props.user.net_worth} editUser={this.props.editUser} />}
+        </div>
+        <User name={this.props.user.name} payDate={payDate()} totalIncome={this.props.totalIncome} totalExpense={this.props.totalExpense} daysRemaining={daysRemaining} remainingBudget={this.props.totalIncome - this.props.totalExpense - this.props.user.savings_target} currentSavings={this.props.user.net_worth} savingsTarget={this.props.user.savings_target} onTrack="are"/>
         </div>
       )
   };
@@ -54,9 +59,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return { getUser: () => dispatch(getUser())}
+  return { getUser: () => dispatch(getUser()),
+           editUser: id => dispatch(editUser(id))}
        };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserContainer);
-
-//<UserProfile name={this.props.user.name} savings_target={this.props.user.savings_target} pay_frequency={this.props.user.pay_frequency} goal_retirement_age={this.props.user.goal_retirement_age} net_worth={this.props.user.net_worth}  />

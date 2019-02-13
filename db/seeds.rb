@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-User.create(savings_target: 1000, age: 26, name: "Nick Lisauskas", goal_retirement_age: 50, net_worth: 110000, pay_frequency: "bi-weekly", next_pay_date: "January 15, 2019", total_income: 2500, total_expense: 1400, days_until_next_paydate: 3, remaining_budget: 100, on_track_for_retirement: true, )
+User.create(savings_target: 1000, age: 26, name: "Nick Lisauskas", goal_retirement_age: 50, net_worth: 110000, pay_frequency: "bi-weekly", next_pay_date: "January 15, 2019", total_income: 2500, total_expense: 1400, days_until_next_paydate: 3, remaining_budget: 100, on_track_for_retirement: true)
 
 Expense.create(description:"Alcohol", amount: 100, user_id: 1, category:"Food & Beverage")
 Expense.create(description:"Alcohol", amount: 100, user_id: 1, category:"Food & Beverage")

@@ -29,6 +29,8 @@ class IncomeForm extends Component {
       category: '',
       user_id: 1
     });
+    var form = document.getElementById("income-form");
+    form.reset();
   }
 
   handleChange(e) {
@@ -43,42 +45,15 @@ class IncomeForm extends Component {
     return (
       <div className="income-container">
       <h1 className='center'> Add a new income! </h1>
-          <Form horizontal onSubmit={this.handleSubmit}>
-      <FormGroup controlId="formHorizontalDescription">
-        <Col componentClass={ControlLabel} sm={2}>
-          Description
-        </Col>
-        <Col sm={10}>
-          <FormControl type="text" placeholder="Description" name="description" onChange={this.handleChange}/>
-        </Col>
-      </FormGroup>
-
-      <FormGroup controlId="formHorizontalAmount">
-        <Col componentClass={ControlLabel} sm={2}>
-          Amount
-        </Col>
-        <Col sm={10}>
-          <FormControl type="integer" placeholder="Amount" name="amount" onChange={this.handleChange}/>
-        </Col>
-      </FormGroup>
-
-      <FormGroup controlId="formHorizontalCategory">
-        <Col componentClass={ControlLabel} sm={2}>
-          Category
-        </Col>
-        <Col sm={10}>
-          <FormControl type="text" placeholder="Category" name="category" onChange={this.handleChange}/>
-        </Col>
-      </FormGroup>
-
-
-      <FormGroup>
-        <Col smOffset={2} sm={10}>
-          <Button type="submit">Add Income</Button>
-        </Col>
-      </FormGroup>
-    </Form>
-
+          <form id="income-form" onSubmit={this.handleSubmit}>
+            <label>Description</label><br></br>
+            <input type="text" placeholder="Description" name="description" onChange={this.handleChange}/><br></br>
+            <label>Amount</label><br></br>
+            <input type="integer" placeholder="Amount" name="amount" onChange={this.handleChange}/><br></br>
+            <label>Category</label><br></br>
+            <input type="text" placeholder="Category" name="category" onChange={this.handleChange}/><br></br>
+            <button type="submit">Add Income</button>
+          </form>
 </div>
     )
   }

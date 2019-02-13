@@ -24,6 +24,29 @@ export function addIncome(data) {
   }
 }
 
+export function editIncome(id) {
+  return(dispatch) => {
+    dispatch({type: 'EDITING_INCOME', payload: id});
+  }
+}
+
+export function updateIncome(id, data) {
+  const url = `http://localhost:3001/api/v1/incomes/${id}`
+  return(dispatch) => {
+    dispatch({type: 'SENDING_INCOME'});
+    fetch(url, {
+      method: 'PUT',
+      body: JSON.stringify({description: data.newDescription, amount: data.newAmount}),
+      headers: {
+        "Accept":"application/json",
+        "Content-Type":"application/json"
+      }
+    }).then(response => response.json())
+    .then(income => dispatch({type: 'UPDATED_INCOME', payload: income}))
+    .catch(err => console.log(err))
+  }
+}
+
 export function deleteIncome(id) {
   const url = `http://localhost:3001/api/v1/incomes/${id}`
   return(dispatch) => {
@@ -63,6 +86,29 @@ export function addExpense(data) {
   }
 }
 
+export function editExpense(id) {
+  return(dispatch) => {
+    dispatch({type: 'EDITING_EXPENSE', payload: id});
+  }
+}
+
+export function updateExpense(id, data) {
+  const url = `http://localhost:3001/api/v1/expenses/${id}`
+  return(dispatch) => {
+    dispatch({type: 'SENDING_EXPENSE'});
+    fetch(url, {
+      method: 'PUT',
+      body: JSON.stringify({description: data.newDescription, amount: data.newAmount}),
+      headers: {
+        "Accept":"application/json",
+        "Content-Type":"application/json"
+      }
+    }).then(response => response.json())
+    .then(expense => dispatch({type: 'UPDATED_EXPENSE', payload: expense}))
+    .catch(err => console.log(err))
+  }
+}
+
 export function deleteExpense(id) {
   const url = `http://localhost:3001/api/v1/expenses/${id}`
   return(dispatch) => {
@@ -83,6 +129,35 @@ export function getUser() {
       .then(response => response.json())
       .then(user => dispatch({ type: 'GET_USER', payload: user }));
   };
+}
+
+export function editUser(id) {
+  return(dispatch) => {
+    dispatch({type: 'EDITING_USER', payload: id});
+  }
+}
+
+export function updateUser(id, data) {
+  const url = `http://localhost:3001/api/v1/users/${id}`
+  return(dispatch) => {
+    dispatch({type: 'SENDING_USER'});
+    fetch(url, {
+      method: 'PUT',
+      body: JSON.stringify({
+        name: data.newName,
+        savings_target: data.newSavingsTarget,
+        pay_frequency: data.newPayFrequency,
+        goal_retirement_age: data.newGoalRetirement,
+        net_worth: data.newNetWorth
+        }),
+      headers: {
+        "Accept":"application/json",
+        "Content-Type":"application/json"
+      }
+    }).then(response => response.json())
+    .then(user => dispatch({type: 'UPDATED_USER', payload: user}))
+    .catch(err => console.log(err))
+  }
 }
 
 export function getTotalIncome(user_id) {

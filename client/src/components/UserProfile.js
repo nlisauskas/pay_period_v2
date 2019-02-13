@@ -2,8 +2,6 @@ import React from "react";
 
 const UserProfile = props => {
 
-  //Add in edit user functionality here.
-
   return (
   <div>
     <ul>
@@ -13,7 +11,7 @@ const UserProfile = props => {
       <li>Goal Retirement Age: {props.goal_retirement_age} </li>
       <li>Net Worth: {props.net_worth} </li>
     </ul>
-    <button>Edit Profile Information</button>
+    <button onClick={() => props.editUser(props.id)}>Edit Profile Information</button>
   </div>
 )
 };

@@ -9,7 +9,8 @@ export default function usersReducer(state = {
       on_track_for_retirement: false,
       name: '',
       goal_retirement_age: 0,
-      net_worth: 0
+      net_worth: 0,
+      isEditing: false
     }
   ],
   totalIncome: 0,
@@ -41,10 +42,17 @@ export default function usersReducer(state = {
     case "DELETED_USER":
     return {loading: false, userInfo: state.userInfo.filter(userInfo => userInfo.id !== action.payload)}
     case "EDITING_USER":
-    debugger
-    return {loading: false, userInfo: state.userInfo, isEditing: true}
-    case "EDITED_USER":
-    return {loading: false, userInfo: state.userInfo, isEditing: false}
+    return {loading: false, userInfo: {...state.userInfo, isEditing:!state.userInfo.isEditing} }
+    case 'UPDATED_USER':
+    return {loading: false, userInfo:
+           {...state.userInfo,
+           name: action.payload.name,
+           savings_target: action.payload.savings_target,
+           pay_frequency: action.payload.pay_frequency,
+           goal_retirement_age: action.payload.goal_retirement_age,
+           net_worth: action.payload.net_worth,
+           isEditing: !state.userInfo.isEditing}
+    }
     default:
       return state;
   }

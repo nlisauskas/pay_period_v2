@@ -52,7 +52,7 @@ module Api::V1
 
       # Only allow a trusted parameter "white user" through.
       def user_params
-        params.require(:user).permit(:savings_target, :age, :name, :goal_retirement_age, :net_worth)
+        params.require(:user).permit(:savings_target, :age, :name, :goal_retirement_age, :net_worth, :pay_frequency)
       end
   end
 end

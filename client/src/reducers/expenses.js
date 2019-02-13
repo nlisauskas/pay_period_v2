@@ -5,7 +5,8 @@ export default function expensesReducer(state = {
       description: '',
       amount: 0,
       category: '',
-      user_id: 1
+      user_id: 1,
+      isEditing: false
     }
   ],
   totalExpense: 0
@@ -28,6 +29,21 @@ export default function expensesReducer(state = {
      return {loading: true, expenseInfo: state.expenseInfo, totalExpense: state.totalExpense}
      case "SENT_EXPENSE":
      return {loading: false, expenseInfo: [...state.expenseInfo, action.payload], totalExpense: state.totalExpense + action.payload.amount}
+     case "EDITING_EXPENSE":
+     return {loading: false, expenseInfo: state.expenseInfo.map((expense) => expense.id === action.payload ? {...expense, isEditing:!expense.isEditing}:expense),
+              totalExpense: state.totalExpense}
+    case 'UPDATED_EXPENSE':
+    return {loading: false, expenseInfo: state.expenseInfo.map((expense)=>{
+      if(expense.id === action.payload.id) {
+        return {
+           ...expense,
+           description:action.payload.description,
+           amount:action.payload.amount,
+           isEditing: !expense.isEditing
+        }
+      } else return expense;
+    }),
+             totalExpense: state.totalExpense - state.expenseInfo.find(expenses => expenses.id === action.payload.id).amount + action.payload.amount}
      case "DELETING_EXPENSE":
     return {loading: true, expenseInfo: state.expenseInfo, totalExpense: state.totalExpense}
     case "DELETED_EXPENSE":
